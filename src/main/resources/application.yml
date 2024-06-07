@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: ${SERVICE_HOST}
   servlet:
     context-path: /profile
 
@@ -7,5 +7,5 @@ spring:
   neo4j:
     uri: bolt://localhost:7687
     authentication:
-      username: neo4j
-      password: 12345678@ab
+      username: ${DB_USERNAME}
+      password: ${DB_PASSWORD}

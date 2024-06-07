@@ -1,23 +1,22 @@
 package hieuubuntu.com.profileservice.controllers;
 
-import org.springframework.web.bind.annotation.*;
-
+import hieuubuntu.com.profileservice.dtos.requests.userprofile.CreateProfileRequest;
 import hieuubuntu.com.profileservice.dtos.responses.DefaultResponse;
 import hieuubuntu.com.profileservice.dtos.responses.userprofile.UserProfileResponse;
 import hieuubuntu.com.profileservice.services.UserProfileService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/user-profile")
-public class UserProfileController {
+public class InternalUserProfileController {
     private final UserProfileService userProfileService;
 
-    @GetMapping
-    public DefaultResponse<UserProfileResponse> getUserProfile(@RequestParam(name = "user_id") Integer userId) {
+    @PostMapping("/internal/users")
+    public DefaultResponse<UserProfileResponse> createUserProfile(@RequestBody @Valid CreateProfileRequest request) {
         DefaultResponse<UserProfileResponse> response = new DefaultResponse<>();
-
-        response.setData(userProfileService.getUserProfile(userId));
+        response.setData(userProfileService.createProfileUser(request));
         return response;
     }
 }

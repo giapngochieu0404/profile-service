@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
     // Handle lỗi chưa được phân loại:
     ResponseEntity<DefaultResponse> handleUncategorizedException(Exception e) {
         DefaultResponse response = new DefaultResponse();
-        response.setCode(ErrorCode.DEFAULT_ERROR.getErrorCode());
+        response.setCode(ErrorCode.DEFAULT_ERROR.getCode());
         response.setMessage(ErrorCode.DEFAULT_ERROR.getMessage());
         response.setSuccess(false);
         return ResponseEntity.badRequest().body(response);
@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
             MissingServletRequestParameterException e) {
         DefaultResponse response = new DefaultResponse();
         response.setSuccess(false);
-        response.setCode(ErrorCode.INVALID_PARAMS_REQUEST.getErrorCode());
+        response.setCode(ErrorCode.INVALID_PARAMS_REQUEST.getCode());
         response.setMessage(e.getParameterName() + " is required");
         return ResponseEntity.badRequest().body(response);
     }
@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
     ResponseEntity<DefaultResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         DefaultResponse response = new DefaultResponse();
         response.setSuccess(false);
-        response.setCode(ErrorCode.INVALID_PARAMS_REQUEST.getErrorCode());
+        response.setCode(ErrorCode.INVALID_PARAMS_REQUEST.getCode());
 
         String messageError = ErrorCode.DEFAULT_ERROR.getMessage();
         FieldError fieldError = e.getFieldError();
