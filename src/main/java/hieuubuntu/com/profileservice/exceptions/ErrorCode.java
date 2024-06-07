@@ -10,9 +10,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ErrorCode {
     DEFAULT_ERROR(1000, "Có lỗi xảy ra vui lòng liên hệ admin", HttpStatus.INTERNAL_SERVER_ERROR),
-    INVALID_PARAMS_REQUEST(1001, "Tham số không hợp lệ", HttpStatus.BAD_REQUEST);
+    INVALID_PARAMS_REQUEST(1001, "Tham số không hợp lệ", HttpStatus.BAD_REQUEST),
+    UNAUTHENTICATED(1002, "unauthenticated", HttpStatus.UNAUTHORIZED);
 
-    private int errorCode;
+    private int code;
     private String message;
     private HttpStatusCode statusCode;
 }
